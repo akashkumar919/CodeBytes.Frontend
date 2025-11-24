@@ -1,0 +1,83 @@
+
+:root {
+ 
+  color: rgba(255, 255, 255, 0.90);
+  background-color: #1a1a1a;
+  font-family: serif;
+
+
+}
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+
+
+@keyframes bgMove {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.animate-bgMove {
+  animation: bgMove 8s ease-in-out infinite alternate;
+}
+
+/* Custom thin scrollbar for modern browsers */
+::-webkit-scrollbar {
+  height: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+}
+:hover::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+
+/* Scrollbar hide for all scrollable elements */
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+
+/* --- HEATMAP CUSTOM DARK COLORS (LeetCode style) --- */
+.heatmap .color-empty { fill: #303030; }
+.heatmap .color-scale-1 { fill: #0e4429; }
+.heatmap .color-scale-2 { fill: #006d32; }
+.heatmap .color-scale-3 { fill: #26a641; }
+.heatmap .color-scale-4 { fill: #39d353; }
+
+.heatmap rect {
+  rx: 3px;
+  ry: 3px;
+}
+
+/* extra spacing between heatmap cells */
+.heatmap .react-calendar-heatmap .react-calendar-heatmap-day {
+  rx: 3px;
+  ry: 3px;
+  shape-rendering: geometricPrecision;
+  margin: 2px !important;   /* <-- ye gap increase karega */
+}
+
+
+
+
+
