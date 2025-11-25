@@ -31,24 +31,18 @@ import Courses from "./components/Courses";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 
-
 //.................................................................................................
 export default function App() {
   const dispatch = useDispatch();
   const { isAuthenticate, user } = useSelector((state) => state.auth);
-   const theme = useSelector((state) => state.theme.mode);
-  
+  const theme = useSelector((state) => state.theme.mode);
 
   useEffect(() => {
     dispatch(checkAuthUser());
   }, [dispatch]);
 
-
-
-
-
   // theme changer
-   useEffect(() => {
+  useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
@@ -64,7 +58,7 @@ export default function App() {
             <Route
               path="/"
               element={
-                isAuthenticate && user.role === "user" ? (
+               isAuthenticate && user.role === "user" ? (
                   <Home />
                 ) : isAuthenticate && user.role === "admin" ? (
                   <AdminPanel />
@@ -97,13 +91,7 @@ export default function App() {
             />
             <Route
               path="/user/account"
-              element={
-                isAuthenticate ? (
-                  <Account />
-                ) : (
-                  <Signup />
-                )
-              }
+              element={isAuthenticate ? <Account /> : <Signup />}
             />
             <Route
               path="/user/dashboard/:id"
@@ -237,3 +225,7 @@ export default function App() {
     </>
   );
 }
+
+
+
+

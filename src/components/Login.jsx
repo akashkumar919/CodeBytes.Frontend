@@ -21,7 +21,7 @@ export default function Login(){
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const {isAuthenticate,loading,user,error} = useSelector((state)=>state.auth);
-
+  
      const {register,handleSubmit,formState: { errors },} = useForm({resolver:zodResolver(loginSchema)});
     
     const [showPassword, setShowPassword] = useState(false);
@@ -30,7 +30,7 @@ export default function Login(){
 
 const submittedData = async (data) => {
     try {
-      await dispatch(loginUser(data)).unwrap();
+     dispatch(loginUser(data));
       
     } catch (error) {
       toast.error(error || 'Something went wrong!');
