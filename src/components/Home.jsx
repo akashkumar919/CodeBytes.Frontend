@@ -6,8 +6,10 @@ import { useNavigate } from "react-router";
 
 
 
+
 export default function Home() {
   const navigate = useNavigate();
+  
    
 
     const features = [
@@ -43,6 +45,9 @@ export default function Home() {
     { step: "3️⃣", title: "Compete", desc: "Join live contests & leaderboards.", link:"Contest" },
     { step: "4️⃣", title: "Grow", desc: "Earn badges, ranks, and confidence.", link:"user/leaderboard" },
   ];
+
+   
+
 
   return (
     <div className="bg-gray-950 text-white font-sans">

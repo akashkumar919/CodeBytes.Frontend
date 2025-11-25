@@ -1,5 +1,6 @@
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router";
 import Problem from "./components/Problem";
@@ -30,15 +31,18 @@ import LeaderBoard from "./components/LeaderBoard";
 import Courses from "./components/Courses";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import Shimmer from "./components/Shimmer";
 
 //.................................................................................................
 export default function App() {
+  const [authLoading, setAuthLoading] = useState(true);
   const dispatch = useDispatch();
   const { isAuthenticate, user } = useSelector((state) => state.auth);
   const theme = useSelector((state) => state.theme.mode);
 
   useEffect(() => {
     dispatch(checkAuthUser());
+    setAuthLoading(false);  // check complete
   }, [dispatch]);
 
   // theme changer
@@ -49,6 +53,11 @@ export default function App() {
       document.documentElement.classList.remove("dark");
     }
   }, [theme]);
+
+
+    if (authLoading) {
+      return <Shimmer />;  
+    }
 
   return (
     <>

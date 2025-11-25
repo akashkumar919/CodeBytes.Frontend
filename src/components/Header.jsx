@@ -33,7 +33,7 @@ export default function Header() {
 
           <NavLink to="/">
             <img
-              src="/src/assets/logo.png"
+              src="https://res.cloudinary.com/djsxyiw6n/image/upload/v1764071145/logo_kzmmci.png"
               alt="CodeBytes_logo"
               className="w-28 md:w-40 scale-95 transition-transform duration-300 ease-in-out hover:scale-100 cursor-pointer"
             />

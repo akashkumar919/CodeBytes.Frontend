@@ -179,10 +179,7 @@ export default function Account() {
              src={user?.photo ? user.photo : "/src/assets/anonymous.png"}
             className="h-24 w-24 md:h-28 md:w-28 rounded-xl object-cover hover:opacity-70 cursor-pointer"
           />
-          {/* <SquarePen onClick={openPhotoPopup}
-                className="absolute -top-1 -right-1 text-orange-500 cursor-pointer"
-                size={20}
-          /> */}
+         
           </div>
 
           <div>
@@ -190,10 +187,10 @@ export default function Account() {
               <h1 className="text-md md:text-2xl font-semibold">
                 {user?.firstName} {user?.lastName}
               </h1>
-              <ExternalLink
+              {user?.role === 'user' && <ExternalLink
                 onClick={() => navigate(`/user/dashboard/${user?._id}`)}
                 className="text-blue-500 cursor-pointer"
-              />
+              />}
             </div>
 
             <span className="text-gray-400 flex gap-2 mt-1 items-center">
