@@ -23,7 +23,7 @@ import AdminPanel from "./components/AdminPanel";
 import DeleteProblem from "./components/DeleteProblem";
 import UpdateProblem from "./components/UpdateProblem";
 import VideoDelete from "./components/VideoDelete";
-import VideoUpload from "./components/videoUpload";
+import VideoUpload from "./components/VideoUpload";
 import Account from "./components/Account";
 import Dashboard from "./components/Dashboard";
 import LeaderBoard from "./components/LeaderBoard";
