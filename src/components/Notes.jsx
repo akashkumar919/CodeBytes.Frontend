@@ -37,7 +37,7 @@ export default function Notes() {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white dark:bg-transparent rounded-lg p-4 ">
+    <div className="max-w-md mx-auto bg-white dark:bg-transparent rounded-lg p-4 h-[100vh]">
       {/* Header with Clear button */}
       <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100">My Notes</h2>
@@ -78,7 +78,7 @@ export default function Notes() {
         ref={editorRef}
         contentEditable
         suppressContentEditableWarning={true}
-        className="w-full min-h-[160px] p-2 rounded resize-none overflow-hidden dark:bg-[#1e1e1e] dark:text-gray-100 focus:outline-none border-none break-words whitespace-pre-wrap"
+        className="w-full min-h-[460px] p-2 rounded resize-none overflow-hidden dark:bg-[#1e1e1e] dark:text-gray-100 focus:outline-none border-none break-words whitespace-pre-wrap"
         placeholder="Write your notes here..."
         onInput={handleInput}
       ></div>

@@ -7,7 +7,9 @@ import { useNavigate } from "react-router";
 import { Linkedin, Github, MapPin } from "lucide-react";
 
 export default function Dashboard() {
-  const { user } = useSelector((state) => state.auth);
+  const [submissions, setSubmissions] = useState([]);
+  const { user, problems } = useSelector((state) => state.auth);
+
   const navigate = useNavigate();
   let Easy = 0;
   let Medium = 0;
@@ -15,10 +17,9 @@ export default function Dashboard() {
   let TotalEasy = 0;
   let TotalMedium = 0;
   let TotalHard = 0;
-  let Total = 0;
+  
 
-  const [submissions, setSubmissions] = useState([]);
-  const [problems, setProblems] = useState([]);
+  // submissions
 
   const [currentPage, setCurrentPage] = useState(1);
   const PROBLEMS_PER_PAGE = 15;
@@ -33,25 +34,24 @@ export default function Dashboard() {
 
   // ---------- Fetch solved problems ----------
   useEffect(() => {
-    async function fetchSubs() {
-      try {
-        // fetch submissions
-        const res = await axiosClient.get(
-          "/submission/getSolvedProblem",
-          user?._id
-        );
-        // fetch problems
-        const result = await axiosClient.get("/problem/allProblem");
+    // async function fetchSubs() {
+    //   try {
+    //     // fetch submissions
+    //     const res = await axiosClient.get(
+    //       "/submission/getSolvedProblem",
+    //       user?._id
+    //     );
+    //     setSubmissions(res?.data?.solvedProblem || []);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
 
-        setProblems(result?.data?.problems || []);
+    // if (user?._id) fetchSubs();
 
-        setSubmissions(res?.data?.solvedProblem || []);
-      } catch (err) {
-        console.log(err);
-      }
+    if (user) {
+      setSubmissions(user?.problemSolved);
     }
-
-    if (user?._id) fetchSubs();
   }, [user?._id]);
 
   // CALCULATE EASY ,MEDIUM , HARD PROBLEM
@@ -63,7 +63,7 @@ export default function Dashboard() {
     } else if (item.difficulty === "Hard") {
       Hard++;
     }
-    Total++;
+    
   });
 
   // CALCULATE TOTAL EASY ,MEDIUM , HARD PROBLEM
@@ -75,7 +75,7 @@ export default function Dashboard() {
     } else if (item.difficulty === "Hard") {
       TotalHard++;
     }
-    Total++;
+   
   });
 
   return (
@@ -141,16 +141,18 @@ export default function Dashboard() {
             Languages
           </h3>
           <div className="flex flex-wrap gap-1">
-            {user?.language ? user?.language.map((lang, idx) => {
-              return (
-                <span
-                  className="bg-gray-600 px-2 py-1 rounded-lg text-xs  break-all"
-                  key={idx}
-                >
-                  {lang}
-                </span>
-              );
-            }) : ""}
+            {user?.language
+              ? user?.language.map((lang, idx) => {
+                  return (
+                    <span
+                      className="bg-gray-600 px-2 py-1 rounded-lg text-xs  break-all"
+                      key={idx}
+                    >
+                      {lang}
+                    </span>
+                  );
+                })
+              : ""}
           </div>
 
           <div className="border-b border-gray-600 my-4 " />
@@ -158,16 +160,18 @@ export default function Dashboard() {
           {/* Skills */}
           <h3 className="font-semibold text-lg mb-3 text-[#ff6200]">Skills</h3>
           <div className="flex flex-wrap gap-1">
-            {user?.skills ? user?.skills.map((lang, idx) => {
-              return (
-                <span
-                  className="bg-gray-600 px-2 py-1 rounded-lg text-xs  break-all"
-                  key={idx}
-                >
-                  {lang}
-                </span>
-              );
-            }) : ""}
+            {user?.skills
+              ? user?.skills.map((lang, idx) => {
+                  return (
+                    <span
+                      className="bg-gray-600 px-2 py-1 rounded-lg text-xs  break-all"
+                      key={idx}
+                    >
+                      {lang}
+                    </span>
+                  );
+                })
+              : ""}
           </div>
 
           <hr className="text-gray-600 mt-5 mb-5" />

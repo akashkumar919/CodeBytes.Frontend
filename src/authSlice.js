@@ -100,6 +100,20 @@ export const updateUser = createAsyncThunk(
 
 
 
+export const fetchAllProblem = createAsyncThunk(
+    'auth/fetchProblem',
+    async(_,{rejectWithValue})=>{
+        try{
+            const response = await axiosClient.get("/problem/allProblem");
+            return response.data.problems ;
+        }
+        catch(error){
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
+
 
 
 export const authSlice = createSlice({
@@ -108,6 +122,7 @@ export const authSlice = createSlice({
     initialState:{
         loading:false,
         user:null,
+        problems :[],
         isAuthenticate:false,
         error:null
     },
@@ -234,6 +249,24 @@ export const authSlice = createSlice({
             state.isAuthenticate = false;
             state.user = null;
         })
+
+
+         // fetch all problems
+        .addCase(fetchAllProblem.pending,(state,action)=>{
+            state.loading = true;
+            state.error = null;
+        })
+        .addCase(fetchAllProblem.fulfilled,(state,action)=>{
+            state.loading = false;
+            state.error = null;
+            state.problems = action.payload;
+        })
+        .addCase(fetchAllProblem.rejected,(state,action)=>{
+            state.loading = false;
+            state.error = action.payload?.message || action.error?.message || "Something went wrong!";
+            state.problems = null;
+        })
+
     }
 
 })

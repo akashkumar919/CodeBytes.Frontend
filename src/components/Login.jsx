@@ -71,7 +71,7 @@ return(
   >
     {/* LOGO */}
     <div className='w-full flex justify-center'>
-      <img src="/src/assets/logo.png" alt="" className='w-40 mb-4' />
+      <img src="https://res.cloudinary.com/djsxyiw6n/image/upload/v1764071145/logo_kzmmci.png" alt="" className='w-40 mb-4' />
     </div>
 
     {/* -------- EMAIL FIELD -------- */}

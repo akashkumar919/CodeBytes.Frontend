@@ -1,8 +1,9 @@
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Navigate } from "react-router";
 
-import { BrowserRouter, Routes, Route } from "react-router";
+import {  Routes, Route,useLocation } from "react-router";
 import Problem from "./components/Problem";
 import Contest from "./components/Contest";
 import Signup from "./components/Signup";
@@ -11,11 +12,10 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import AboutUs from "./components/AboutUs";
 import Footer from "./components/Footer";
+import Shimmer from "./components/Shimmer";
 //........................................................................................
 import { useDispatch, useSelector } from "react-redux";
-import { checkAuthUser } from "./authSlice";
-import { useEffect } from "react";
-import { Navigate } from "react-router";
+import { checkAuthUser,fetchAllProblem } from "./authSlice";
 //........................................................................................
 import CreateProblem from "./components/CreateProblem";
 // import CodeEditor from "./components/CodeEditor"
@@ -35,15 +35,32 @@ import ResetPassword from "./components/ResetPassword";
 
 //.................................................................................................
 export default function App() {
+  const location = useLocation();
+  const [loading, setLoading] = useState(true);
  
   const dispatch = useDispatch();
-  const { isAuthenticate, user } = useSelector((state) => state.auth);
+  const { isAuthenticate, user ,problems} = useSelector((state) => state.auth);
   const theme = useSelector((state) => state.theme.mode);
+
+  // useEffect(() => {
+  //   dispatch(checkAuthUser());
+  //   dispatch(fetchAllProblem());
+    
+  // }, [dispatch]);
+
+  
 
   useEffect(() => {
     dispatch(checkAuthUser());
-    
   }, [dispatch]);
+
+useEffect(() => {
+  if (isAuthenticate) {
+    dispatch(fetchAllProblem());
+  }
+}, [isAuthenticate, dispatch]);
+
+
 
   // theme changer
   useEffect(() => {
@@ -55,11 +72,27 @@ export default function App() {
   }, [theme]);
 
 
+  // this is for shimmer effect 
+  
+  
+  useEffect(() => {
+    // Whenever the route changes, show shimmer for 1 sec
+    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);  // <-- route change detect here
+
+  if (loading) return <Shimmer />;
+
+
    
 
   return (
     <>
-      <BrowserRouter>
+      
         <Routes>
           <Route element={<Header />}>
             <Route
@@ -216,7 +249,7 @@ export default function App() {
         </Routes>
 
         {isAuthenticate && user.role === "user" && <Footer />}
-      </BrowserRouter>
+     
 
       {/* 👇 Toast Container for all notifications */}
       <ToastContainer

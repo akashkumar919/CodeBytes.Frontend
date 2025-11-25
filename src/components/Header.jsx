@@ -41,7 +41,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Links  for user only */}
-        {isAuthenticate && user.role === 'user' && (
+        {isAuthenticate && user.role === "user" && (
           <div className="hidden md:flex gap-6 font-bold">
             {[
               { name: "Contest", path: "/Contest" },
@@ -143,7 +143,7 @@ export default function Header() {
               <hr className="w-full text-gray-400" />
               <NavLink to="/">
                 <img
-                  src="src/assets/logo.png"
+                  src="https://res.cloudinary.com/djsxyiw6n/image/upload/v1764071145/logo_kzmmci.png"
                   alt="CodeBytes_logo"
                   className="w-40"
                 />
@@ -153,7 +153,7 @@ export default function Header() {
                 { name: "CreateProblem", path: "/admin/createProblem" },
                 { name: "UpdateProblem", path: "/admin/updateProblem" },
                 { name: "DeleteProblem", path: "/admin/deleteProblem" },
-                 { name: "UploadVideo", path: "/admin/videoDelete" },
+                { name: "UploadVideo", path: "/admin/videoDelete" },
               ].map((link) => (
                 <NavLink
                   key={link.name}
@@ -171,8 +171,7 @@ export default function Header() {
               ))}
             </div>
           </div>
-        )
-      : (
+        ) : (
           <div
             className={`fixed top-0 left-0 h-full w-64 bg-[#252525] text-white transform transition-transform duration-300 ease-in-out z-50 ${
               isOpen ? "translate-x-0" : "-translate-x-full"
@@ -191,7 +190,7 @@ export default function Header() {
               <hr className="w-full text-gray-400" />
               <NavLink to="/">
                 <img
-                  src="/src/assets/logo.png"
+                  src="https://res.cloudinary.com/djsxyiw6n/image/upload/v1764071145/logo_kzmmci.png"
                   alt="CodeBytes_logo"
                   className="w-40"
                 />
@@ -219,7 +218,7 @@ export default function Header() {
               ))}
             </div>
           </div>
-        ) }
+        )}
 
         {/* Background Overlay when menu open */}
         {isOpen && (

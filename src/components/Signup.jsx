@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router"; // ✅ Correct import
 import { registerUser } from "../authSlice";
-import Shimmer from "./Shimmer";
 import { toast } from "react-toastify";
 import ContinueWithGoogle from "./ContinueWithGoogle";
 
@@ -60,7 +59,7 @@ export default function Signup() {
     if (error) toast.error(error);
   }, [error]);
 
-  if (loading) return <Shimmer />;
+  
 
   return (
     <div className="h-full w-full flex justify-center mt-21">
@@ -70,7 +69,7 @@ export default function Signup() {
       >
         {/* Logo */}
         <div className="w-full flex justify-center">
-          <img src="/src/assets/logo.png" alt="Logo" className="w-40 mb-2" />
+          <img src="https://res.cloudinary.com/djsxyiw6n/image/upload/v1764071145/logo_kzmmci.png" alt="Logo" className="w-40 mb-2" />
         </div>
 
         {/* Name */}

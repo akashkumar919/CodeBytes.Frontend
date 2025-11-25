@@ -437,14 +437,17 @@ export default function ProblemSolvePage() {
               )}
               {/* This is for Editorial  */}
               {activeTab === "editorial" && (
-                <div className="text-sm text-slate-300">
+                <div className="text-sm text-slate-300 h-[100vh]">
                   {problem.video ? (
                     <VideoPlayer videoUrl={problem.video} problem={problem} />
                   ) : (
-                    <h1>
+                    
+                      <h1>
                       Editorial/Reference solutions are locked. Try solving
                       first! 🎯
-                    </h1>
+                      </h1>
+                    
+                    
                   )}
                 </div>
               )}
@@ -460,7 +463,7 @@ export default function ProblemSolvePage() {
 
               {/* Run Result  */}
               {activeTab === "testcase" && (
-                <div className="flex-1 p-4 overflow-y-auto">
+                <div className="flex-1 p-4 overflow-y-auto h-[100vh]">
                   <h3 className="font-semibold mb-4">Test Results</h3>
                   {runResult ? (
                     <div
@@ -557,7 +560,7 @@ export default function ProblemSolvePage() {
 
               {/* submitResult  */}
               {activeTab === "result" && (
-                <div className="flex-1 p-4 overflow-y-auto">
+                <div className="flex-1 p-4 overflow-y-auto h-[100vh]">
                   <h3 className="font-semibold mb-4">Submission Result</h3>
                   {submitResult ? (
                     <div
@@ -652,11 +655,11 @@ export default function ProblemSolvePage() {
 
                   {/* 🔥 Show loading or empty state */}
                   {submissionHistory?.length === 0 ? (
-                    <div className="text-gray-500">
+                    <div className="text-gray-500 h-[100vh]">
                       <h1>You haven’t made any submissions yet.</h1>
                     </div>
                   ) : (
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto h-[100vh]">
                       <table className="min-w-full border border-white/10 text-sm rounded-xl">
                         <thead className="bg-white/10 text-slate-300 uppercase text-xs">
                           <tr>
@@ -789,7 +792,7 @@ export default function ProblemSolvePage() {
                     activeTab === "chatAi" ? "bg-white/10" : "hover:bg-white/5"
                   }`}
                 >
-                  Chat Assistant
+                  Ask-AI
                 </button>
               </div>
 

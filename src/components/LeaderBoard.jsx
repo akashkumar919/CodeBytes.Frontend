@@ -3,9 +3,27 @@ import { User2 } from "lucide-react";
 import axiosClient from "../utils/axiosClient";
 
 export default function LeaderboardPage() {
+  
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [selectedUser, setSelectedUser] = useState(null);
+
+  // console.log(selectedUser)
+  let Easy = 0;
+  let Medium = 0;
+  let Hard = 0;
+
+  selectedUser?.problemSolved.map((p,i)=>{
+    if(p.difficulty === 'Easy'){
+      Easy++;
+    }
+    else if(p.difficulty === 'Medium'){
+      Medium++;
+    }
+    if(p.difficulty === 'Hard'){
+      Hard++;
+    }
+  })
 
   const pageSize = 15;
 
@@ -77,21 +95,21 @@ export default function LeaderboardPage() {
           <div className="flex justify-between items-center text-2xl">
             <p>Total Solved: </p>
             <p>
-              <b>{selectedUser.problemsSolved.length}</b>
+              <b>{selectedUser.problemSolved.length}</b>
             </p>
           </div>
 
           <div className="flex justify-between items-center text-green-400 text-sm mt-2">
             <p>Easy: </p>
-            <p>{Math.floor(selectedUser.problemsSolved.length * 0.4)}</p>
+            <p>{Easy}</p>
           </div>
           <div className="flex justify-between items-center text-yellow-400 text-sm">
             <p>Medium:</p>
-            <p> {Math.floor(selectedUser.problemsSolved.length * 0.35)}</p>
+            <p> {Medium}</p>
           </div>
           <div className="flex justify-between items-center text-red-500 text-sm">
             <p>Hard:</p>
-            <p>{Math.floor(selectedUser.problemsSolved.length * 0.25)}</p>
+            <p>{Hard}</p>
           </div>
         </div>
       </div>
@@ -128,7 +146,7 @@ export default function LeaderboardPage() {
               </div>
               <div className="text-lg font-bold text-blue-400">{u.points}</div>
               <div className="text-lg font-bold text-green-400">
-                {u.problemsSolved.length}
+                {u.problemSolved.length}
               </div>
             </div>
           ))}

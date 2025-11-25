@@ -4,8 +4,9 @@ import { useSelector } from "react-redux";
 import axiosClient from "../utils/axiosClient";
 import { useState, useEffect } from "react";
 
-export default function MyStatus({problems}) {
-  const { user } = useSelector((state) => state.auth);
+export default function MyStatus() {
+  const { user,problems } = useSelector((state) => state.auth);
+  const [submissions, setSubmissions] = useState([]);
   let Easy = 0 ;
   let Medium = 0;
   let Hard = 0;
@@ -14,22 +15,24 @@ export default function MyStatus({problems}) {
   let TotalHard = 0;
   let Total = 0
 
-  const [submissions, setSubmissions] = useState([]);
  
   useEffect(() => {
-    async function fetchSubs() {
-      try {
-        const res = await axiosClient.get(
-          "/submission/getSolvedProblem",
-          user?._id
-        );
-        setSubmissions(res?.data?.solvedProblem || []);
-      } catch (err) {
-        console.log(err);
-      }
-    }
+    // async function fetchSubs() {
+    //   try {
+    //     const res = await axiosClient.get(
+    //       "/submission/getSolvedProblem",
+    //       user?._id
+    //     );
+    //     setSubmissions(res?.data?.solvedProblem || []);
+    //   } catch (err) {
+    //     console.log(err);
+    //   }
+    // }
 
-    fetchSubs();
+    // fetchSubs();
+    if(user){
+      setSubmissions(user?.problemSolved)
+    }
   }, [user]);
 
 
