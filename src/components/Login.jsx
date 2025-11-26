@@ -46,6 +46,7 @@ export default function Login() {
       }
      
       dispatch(loginUser(data));
+      navigate('/')
     } catch (error) {
       toast.error(error || "Something went wrong!");
     }

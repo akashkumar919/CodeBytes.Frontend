@@ -51,17 +51,22 @@ export default function Signup() {
      const strongEmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
 
   const submittedData = (data) => {
+    try{
       if(!strongEmail.test(data.email)){
         return toast.error('Enter valid Email!')
       }
       if (!strongPassword.test(data.password)) {
         return toast.error("Password must contain 1 uppercase, 1 lowercase, 1 number, 1 special character!")
       }
-    dispatch(registerUser(data))
-      .unwrap()
-      .catch((err) => {
-        toast.error(err || "Something went wrong!");
-      });
+      dispatch(registerUser(data)).unwrap();
+      navigate('/')
+    }
+    catch(err){
+      toast.error(err || "Something went wrong!");
+    }
+      
+    
+     
   };
 
   // 🔔 ERROR notification
