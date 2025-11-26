@@ -28,6 +28,7 @@ export default function Signup() {
     (state) => state.auth
   );
 
+  
   const {
     register,
     handleSubmit,
@@ -46,7 +47,16 @@ export default function Signup() {
     }
   }, [isAuthenticate, user, navigate]);
 
+     const strongPassword = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+     const strongEmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
   const submittedData = (data) => {
+      if(!strongEmail.test(data.email)){
+        return toast.error('Enter valid Email!')
+      }
+      if (!strongPassword.test(data.password)) {
+        return toast.error("Password must contain 1 uppercase, 1 lowercase, 1 number, 1 special character!")
+      }
     dispatch(registerUser(data))
       .unwrap()
       .catch((err) => {
@@ -55,9 +65,9 @@ export default function Signup() {
   };
 
   // 🔔 ERROR notification
-  useEffect(() => {
-    if (error) toast.error(error);
-  }, [error]);
+  // useEffect(() => {
+  //   if (error) toast.error(error);
+  // }, [error]);
 
   
 

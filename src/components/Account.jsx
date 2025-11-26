@@ -142,6 +142,7 @@ export default function Account() {
 
     const ans = await axiosClient.delete(`/user/deleteUser/${user?._id}`);
     toast.success(ans.data?.message || "Account deleted!");
+    navigate('/Signup')
   };
 
   return (
